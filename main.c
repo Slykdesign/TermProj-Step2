@@ -1,4 +1,4 @@
-#include "partition.h"
+#include "ext2.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
@@ -18,8 +18,8 @@ int main() {
 
     printf("\nReading first 1KB block from the partition:\n");
     uint8_t buffer[1024];
-    lseekPartition(partition, 1024, SEEK_SET);
-    readPartition(partition, buffer, 1024);
+    vdiSeekPartition(partition, 1024, SEEK_SET);
+    vdiReadPartition(partition, buffer, 1024);
     displayBuffer(buffer, 1024, 0);
 
     closePartition(partition);
