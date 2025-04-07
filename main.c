@@ -1,11 +1,9 @@
-#include "vdi.h"
 #include "partition.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <fcntl.h>
 #include <ctype.h>
-#include <time.h>
 
 // Function prototypes
 void displayBufferPage(uint8_t *buf, uint32_t count, uint32_t skip, uint64_t offset);
@@ -15,14 +13,14 @@ int main() {
     MBRPartition *partition = openPartition("./good-fixed-1k.vdi", 0);
     if (!partition) return 1;
 
-    printf("Partition table entry 0:\n");
-    displayPartitionTableEntry(partition->partitionTable);
+    printf("Partition table:\n");
+    displayPartitionTable(partition);
 
-    printf("\nReading 1KB block from partition:\n");
-    char buffer[1024];
+    printf("\nReading first 1KB block from the partition:\n");
+    uint8_t buffer[1024];
     lseekPartition(partition, 1024, SEEK_SET);
     readPartition(partition, buffer, 1024);
-    displayBuffer((uint8_t *)buffer, 1024, 0x400);
+    displayBuffer(buffer, 1024, 0);
 
     closePartition(partition);
     return 0;
