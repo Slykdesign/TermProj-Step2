@@ -133,7 +133,7 @@ off_t vdiTranslate(VDIFile *vdi, off_t logicalOffset) {
     return (off_t)(physicalPage * vdi->pageSize + offsetInPage);
 }
 
-void displayVDIHeader(const VDIFile *vdi) {
+void displayVDIHeader(VDIFile *vdi) {
     printf("      Image name: [<<< Oracle VM VirtualBox Disk Image >>>        ]\n");
     printf("       Signature: 0x%x\n", *(uint32_t *)(vdi->header));
     printf("         Version: %d.%d\n", vdi->header[4], vdi->header[5]);
