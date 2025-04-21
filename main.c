@@ -10,7 +10,7 @@ void displayBuffer(uint8_t *buf, uint32_t count, uint64_t offset);
 
 int main() {
     // Open Partition
-    MBRPartition *partition = openPartition("./good-fixed-1k.vdi", 0);
+    MBRPartition *partition = openPartition("full/path/to/file", 0);
     if (!partition) {
         printf("Error opening partition.\n");
         return 1;
